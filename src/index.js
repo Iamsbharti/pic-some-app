@@ -3,10 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./styles.css";
-
+import { PicSomeContextProvider } from "./picSomeContext";
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <PicSomeContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </PicSomeContextProvider>,
   document.getElementById("root")
 );

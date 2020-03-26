@@ -2,22 +2,24 @@ import React, { useState, useContext } from "react";
 import { Context } from "../picSomeContext";
 import PropTypes from "prop-types";
 
-function Image({ className, url, id, isFavorite }) {
+function Image({ className, img }) {
   const [hovered, setHovered] = useState(false);
 
-  const { toggleFavorite } = useContext(Context);
+  const { toggleFavorite, addToCart } = useContext(Context);
 
   const heartIcon = hovered && (
     <i
       className="ri-heart-line favorite"
-      onClick={() => toggleFavorite(id)}
+      onClick={() => toggleFavorite(img.id)}
     ></i>
   );
-  const addIcon = hovered && <i className="ri-add-circle-line cart"></i>;
-  const filledHeart = isFavorite && (
+  const addIcon = hovered && (
+    <i className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>
+  );
+  const filledHeart = img.isFavorite && (
     <i
       className="ri-heart-fill favorite"
-      onClick={() => toggleFavorite(id)}
+      onClick={() => toggleFavorite(img.id)}
     ></i>
   );
   return (
@@ -26,7 +28,7 @@ function Image({ className, url, id, isFavorite }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <img src={url} className="image-grid" alt="?" />
+      <img src={img.url} className="image-grid" alt="?" />
       {heartIcon}
       {addIcon}
       {filledHeart}
@@ -35,8 +37,10 @@ function Image({ className, url, id, isFavorite }) {
 }
 Image.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  url: PropTypes.string.isRequired
+  img: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+    url: PropTypes.string.isRequired
+  })
 };
 export default Image;

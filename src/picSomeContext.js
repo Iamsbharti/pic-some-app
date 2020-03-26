@@ -28,9 +28,18 @@ function PicSomeContextProvider(props) {
   function isAddedToCart(img) {
     return cartItems.find(item => item.id === img.id);
   }
+  function removeItemFromCart(removeImg) {
+    setCartItems(prev => prev.filter(item => item.id !== removeImg.id));
+  }
   return (
     <Context.Provider
-      value={{ allPhotos, toggleFavorite, addToCart, isAddedToCart }}
+      value={{
+        allPhotos,
+        toggleFavorite,
+        addToCart,
+        isAddedToCart,
+        removeItemFromCart
+      }}
     >
       {props.children}
     </Context.Provider>

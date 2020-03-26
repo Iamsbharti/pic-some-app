@@ -10,6 +10,7 @@ function Photos() {
       url={photo.url}
       key={photo.id}
       id={photo.id}
+      isFavorite={photo.isFavorite}
       className={getClass(index)}
     />
   ));

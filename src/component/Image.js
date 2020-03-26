@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../picSomeContext";
-function Image({ className, url, onToggle, id }) {
+function Image({ className, url, onToggle, id, isFavorite }) {
   const [hovered, setHovered] = useState(false);
 
   const { toggleFavorite } = useContext(Context);
@@ -12,6 +12,12 @@ function Image({ className, url, onToggle, id }) {
     ></i>
   );
   const addIcon = hovered && <i className="ri-add-circle-line cart"></i>;
+  const filledHeart = isFavorite && (
+    <i
+      className="ri-heart-fill favorite"
+      onClick={() => toggleFavorite(id)}
+    ></i>
+  );
   return (
     <div
       className={`${className} image-container`}
@@ -21,6 +27,7 @@ function Image({ className, url, onToggle, id }) {
       <img src={url} className="image-grid" alt="?" />
       {heartIcon}
       {addIcon}
+      {filledHeart}
     </div>
   );
 }

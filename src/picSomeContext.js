@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const { Provider, Consumer } = React.createContext();
+const Context = React.createContext();
 
 function PicSomeContextProvider(props) {
   const [allPhotos, setAllPhotos] = useState([]);
@@ -11,8 +11,22 @@ function PicSomeContextProvider(props) {
       .then(response => response.json())
       .then(data => setAllPhotos(data));
   }, []);
-
+  function toggleFavorite(id) {
+    console.log(id);
+    console.log("toggled");
+    const updatedArray = allPhotos.map(photo => {
+      if (photo.id === id) {
+        return { ...photo, isFavorite: !photo.isFavorite };
+      }
+      return photo;
+    });
+    setAllPhotos(updatedArray);
+  }
   console.log(allPhotos);
-  return <Provider value={{ allPhotos }}>{props.children}</Provider>;
+  return (
+    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+      {props.children}
+    </Context.Provider>
+  );
 }
-export { PicSomeContextProvider, Consumer as PicSomeContextConsumer };
+export { PicSomeContextProvider, Context };

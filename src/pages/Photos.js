@@ -1,23 +1,19 @@
-import React from "react";
-import { PicSomeContextConsumer } from "../picSomeContext";
+import React, { useContext } from "react";
+import { Context } from "../picSomeContext";
 import Image from "../component/Image";
 import { getClass } from "../utils/index";
+
 function Photos() {
-  return (
-    <main className="photos">
-      <PicSomeContextConsumer>
-        {({ allPhotos }) =>
-          allPhotos.map((photo, index) => (
-            <Image
-              url={photo.url}
-              key={photo.index}
-              className={getClass(index)}
-            />
-          ))
-        }
-      </PicSomeContextConsumer>
-    </main>
-  );
+  const { allPhotos } = useContext(Context);
+  const images = allPhotos.map((photo, index) => (
+    <Image
+      url={photo.url}
+      key={photo.id}
+      id={photo.id}
+      className={getClass(index)}
+    />
+  ));
+  return <main className="photos">{images}</main>;
 }
 
 export default Photos;

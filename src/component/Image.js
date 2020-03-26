@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../picSomeContext";
-function Image({ className, url, onToggle, id, isFavorite }) {
+import PropTypes from "prop-types";
+
+function Image({ className, url, id, isFavorite }) {
   const [hovered, setHovered] = useState(false);
 
   const { toggleFavorite } = useContext(Context);
@@ -31,5 +33,10 @@ function Image({ className, url, onToggle, id, isFavorite }) {
     </div>
   );
 }
-
+Image.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  url: PropTypes.string.isRequired
+};
 export default Image;

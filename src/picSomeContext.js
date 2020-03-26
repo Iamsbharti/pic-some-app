@@ -20,7 +20,7 @@ function PicSomeContextProvider(props) {
     });
     setAllPhotos(updatedArray);
   }
-  console.log(allPhotos);
+
   return (
     <Context.Provider value={{ allPhotos, toggleFavorite }}>
       {props.children}

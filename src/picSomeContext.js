@@ -36,6 +36,7 @@ function PicSomeContextProvider(props) {
       value={{
         allPhotos,
         toggleFavorite,
+        cartItems,
         addToCart,
         isAddedToCart,
         removeItemFromCart

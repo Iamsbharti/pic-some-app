@@ -23,13 +23,15 @@ function PicSomeContextProvider(props) {
     setAllPhotos(updatedArray);
   }
   function addToCart(image) {
-    console.log("image added" + image.id);
     setCartItems(prev => [...cartItems, image]);
-    console.log(cartItems);
   }
-
+  function isAddedToCart(img) {
+    return cartItems.find(item => item.id === img.id);
+  }
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>
+    <Context.Provider
+      value={{ allPhotos, toggleFavorite, addToCart, isAddedToCart }}
+    >
       {props.children}
     </Context.Provider>
   );

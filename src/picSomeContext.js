@@ -12,8 +12,6 @@ function PicSomeContextProvider(props) {
       .then(data => setAllPhotos(data));
   }, []);
   function toggleFavorite(id) {
-    console.log(id);
-    console.log("toggled");
     const updatedArray = allPhotos.map(photo => {
       if (photo.id === id) {
         return { ...photo, isFavorite: !photo.isFavorite };

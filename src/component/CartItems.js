@@ -3,7 +3,6 @@ import { Context } from "../picSomeContext";
 import PropTypes from "prop-types";
 import useHover from "../hooks/useHover";
 function CartItems({ item }) {
-  //const [hovered, setHovered] = useState(false);
   const [hovered, element] = useHover();
   const { removeItemFromCart } = useContext(Context);
   const price = 5.99;

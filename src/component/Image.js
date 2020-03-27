@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../picSomeContext";
 import PropTypes from "prop-types";
 import useHover from "../hooks/useHover";
 function Image({ className, img }) {
-  //const [hovered, setHovered] = useState(false);
   const [hovered, element] = useHover();
   const {
     toggleFavorite,

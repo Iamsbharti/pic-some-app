@@ -143,3 +143,8 @@ a:hover {
 a:active {
   color: var(--light-blue);
 }
+
+.no-item {
+  text-align: center;
+  color: darkmagenta;
+}

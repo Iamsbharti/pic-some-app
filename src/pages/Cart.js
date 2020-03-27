@@ -32,9 +32,15 @@ function Cart() {
       <h1>Check out</h1>
       {picturesInCart}
       <p className="total-cost">Total Cost:{totalCostDisplay}</p>
-      <div className="order-button">
-        <button onClick={handleClick}>{btnText}</button>
-      </div>
+      {cartItems.length > 0 ? (
+        <div className="order-button">
+          <button onClick={handleClick}>{btnText}</button>
+        </div>
+      ) : (
+        <div className="no-item">
+          <p>No Items In Cart</p>
+        </div>
+      )}
     </main>
   );
 }

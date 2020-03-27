@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../picSomeContext";
 import PropTypes from "prop-types";
-
+import useHover from "../hooks/useHover";
 function CartItems({ item }) {
-  const [hovered, setHovered] = useState(false);
+  //const [hovered, setHovered] = useState(false);
+  const [hovered, element] = useHover();
   const { removeItemFromCart } = useContext(Context);
   const price = 5.99;
   const dispPrice = price.toLocaleString("en-US", {
@@ -16,8 +17,7 @@ function CartItems({ item }) {
       <i
         className={`ri-delete-bin-${classname}`}
         onClick={() => removeItemFromCart(item)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        ref={element}
       ></i>
       <img src={item.url} width="130px" alt="?" />
       <p>{dispPrice}</p>

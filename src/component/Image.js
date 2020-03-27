@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../picSomeContext";
 import PropTypes from "prop-types";
-
+import useHover from "../hooks/useHover";
 function Image({ className, img }) {
-  const [hovered, setHovered] = useState(false);
+  //const [hovered, setHovered] = useState(false);
+  const [hovered, element] = useHover();
   const {
     toggleFavorite,
     addToCart,
@@ -47,11 +48,7 @@ function Image({ className, img }) {
   }
 
   return (
-    <div
-      className={`${className} image-container`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className={`${className} image-container`} ref={element}>
       <img src={img.url} className="image-grid" alt="?" />
       {checkIsFavorite()}
       {isItemInCart()}

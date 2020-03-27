@@ -31,6 +31,9 @@ function PicSomeContextProvider(props) {
   function removeItemFromCart(removeImg) {
     setCartItems(prev => prev.filter(item => item.id !== removeImg.id));
   }
+  function emptyCart() {
+    setCartItems([]);
+  }
   return (
     <Context.Provider
       value={{
@@ -39,7 +42,8 @@ function PicSomeContextProvider(props) {
         cartItems,
         addToCart,
         isAddedToCart,
-        removeItemFromCart
+        removeItemFromCart,
+        emptyCart
       }}
     >
       {props.children}
